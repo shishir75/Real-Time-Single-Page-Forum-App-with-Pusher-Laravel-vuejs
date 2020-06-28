@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Question;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
 {
@@ -26,7 +27,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //auth()->user()->questions()->create($request->all());
+        Question::create($request->all());
+        return response('Created', Response::HTTP_CREATED);
     }
 
     /**
