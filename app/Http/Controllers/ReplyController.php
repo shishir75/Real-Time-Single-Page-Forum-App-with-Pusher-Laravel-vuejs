@@ -29,7 +29,7 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
         $reply = $question->replies()->create($request->all());
-        return response(['reply' => $reply], Response::HTTP_CREATED);
+        return response(['reply' => new ReplyResource($reply)], Response::HTTP_CREATED);
     }
 
     /**
@@ -40,8 +40,8 @@ class ReplyController extends Controller
      */
     public function show(Question $question, Reply $reply) // must have to pass Question $question in 1st place to work
     {
-        return $reply;
-        //return new ReplyResource($reply);
+        //return $reply;
+        return new ReplyResource($reply);
     }
 
     /**
