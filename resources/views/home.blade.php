@@ -8,13 +8,16 @@
 <body>
 <div id="app">
     <v-app>
-        <v-main>
-            <v-timeline>
-                <v-timeline-item>timeline item</v-timeline-item>
-                <v-timeline-item class="text-right">timeline item</v-timeline-item>
-                <v-timeline-item>timeline item</v-timeline-item>
-            </v-timeline>
-        </v-main>
+        <v-toolbar>
+            <v-toolbar-side-icon></v-toolbar-side-icon>
+            <v-toolbar-title>Title</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn flat>Link One</v-btn>
+                <v-btn flat>Link Two</v-btn>
+                <v-btn flat>Link Three</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
     </v-app>
 </div>
 
