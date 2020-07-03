@@ -1,10 +1,38 @@
 <template>
-    <h1>Login</h1>
+    <v-container>
+        <v-form>
+            <v-text-field
+                v-model="form.email"
+                label="E-mail"
+                type="email"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="form.password"
+                label="Password"
+                type="password"
+                required
+            ></v-text-field>
+
+            <v-btn color="green" type="submit">Login</v-btn>
+        </v-form>
+    </v-container>
+
 </template>
 
 <script>
     export default {
-        name: "Login"
+        name: "Login",
+        data() {
+            return {
+                form: {
+                    emal: null,
+                    password: null
+                }
+            }
+
+        }
     }
 </script>
 
