@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-form>
+        <v-form @submit.prevent="login">
             <v-text-field
                 v-model="form.email"
                 label="E-mail"
@@ -31,7 +31,13 @@
                     password: null
                 }
             }
-
+        },
+        methods: {
+            login() {
+                axios.post('/api/auth/login', this.form)
+                    .then(res => console.log(res.data))
+                    .catch(error => console.log(error.response.data));
+            }
         }
     }
 </script>
