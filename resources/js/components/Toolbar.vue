@@ -7,7 +7,9 @@
             <v-spacer></v-spacer>
 
             <div class="hidden-sm-and-down">
-                <v-btn text>Forum</v-btn>
+                <router-link to="/forum">
+                    <v-btn text>Forum</v-btn>
+                </router-link>
                 <v-btn text>Ask a Question</v-btn>
                 <v-btn text>Category</v-btn>
                 <router-link to="/login">
