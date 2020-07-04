@@ -65,7 +65,7 @@
                 axios.post('/api/auth/signup', this.form)
                     .then(res => {
                         User.responseAfterLogin(res);
-                        this.$router.push({ name: 'forum'}); // redirect
+                        //this.$router.push({ name: 'forum'}); // redirect, no refresh
                     })
                     .catch(error => this.errors = error.response.data.errors);
             },
