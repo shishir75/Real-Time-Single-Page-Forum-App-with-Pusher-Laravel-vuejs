@@ -38,13 +38,13 @@
         },
         created() {
             if (User.loggedIn()) {
-                this.$router.push({ name: 'forum'}); // redirect, no refresh
+                this.router.push({ name: 'forum'}); // redirect, no refresh
             }
         },
         methods: {
             login() {
                 User.login(this.form);
-                //this.$router.push({ name: 'forum'}); // redirect, no refresh
+                //this.router.push({ name: 'forum'}); // redirect, no refresh
             }
         }
     }

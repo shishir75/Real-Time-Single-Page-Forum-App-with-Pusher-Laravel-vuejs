@@ -57,7 +57,7 @@
         },
         created() {
             if (User.loggedIn()) {
-                this.$router.push({ name: 'forum'}); // redirect
+                this.router.push({ name: 'forum'}); // redirect
             }
         },
         methods: {
