@@ -1,14 +1,18 @@
 <template>
-    <h1>{{ question.title }}</h1>
+    <show-question :data="question"></show-question>
 </template>
 
 <script>
+    import ShowQuestion from "./ShowQuestion";
     export default {
         name: "Read",
         data() {
             return  {
                 question: {},
             }
+        },
+        components: {
+            ShowQuestion,
         },
         created() {
             axios.get(`/api/question/${this.$route.params.slug}`)
