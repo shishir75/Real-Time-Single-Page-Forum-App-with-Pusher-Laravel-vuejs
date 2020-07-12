@@ -7,7 +7,7 @@
                         {{ data.title }}
                     </router-link>
                 </h3>
-                <div class="grey--text">{{ data.created_at }}</div>
+                <div class="grey--text">{{ data.user }} said {{ data.created_at }}</div>
             </div>
         </v-card-title>
         <v-card-text>
