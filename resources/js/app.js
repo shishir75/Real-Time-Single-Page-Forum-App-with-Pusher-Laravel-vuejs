@@ -15,6 +15,12 @@ window.User = User;
 
 window.EventBus = new Vue();
 
+// Vue SimpleMDE
+import VueSimplemde from 'vue-simplemde'
+import 'simplemde/dist/simplemde.min.css'
+
+Vue.component('vue-simplemde', VueSimplemde)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

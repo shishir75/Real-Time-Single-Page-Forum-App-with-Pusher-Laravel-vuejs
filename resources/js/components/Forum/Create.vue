@@ -17,6 +17,8 @@
                 v-model="form.category_id"
             ></v-autocomplete>
 
+            <vue-simplemde v-model="form.body"/>
+
 
             <v-btn color="green" type="submit">Create</v-btn>
         </v-form>
@@ -34,7 +36,7 @@
                     body: null
                 },
                 categories: {},
-
+                errors: {}
             }
         },
         created() {
@@ -43,7 +45,9 @@
         },
         methods: {
             create() {
-
+                axios.post('/api/question', this.form)
+                    .then(res => console.log(res.data.data))
+                    .catch(error => this.errors = error.response.data.error);
             }
         }
     }
