@@ -12,11 +12,11 @@
                 <v-btn color="teal">5 Replies</v-btn>
             </v-card-title>
             <v-card-text v-html="body"></v-card-text>
-            <v-card-actions>
+            <v-card-actions v-if="own">
                 <v-btn icon small>
                     <v-icon color="orange">fas fa-edit</v-icon>
                 </v-btn>
-                <v-btn icon small>
+                <v-btn icon small @click="destroy">
                     <v-icon color="red">fas fa-trash</v-icon>
                 </v-btn>
             </v-card-actions>
@@ -37,6 +37,15 @@
         computed: {
             body() {
                 return md.parse(this.data.body);
+            }
+        },
+        methods: {
+            destroy() {
+                if(this.own === true) {
+                    axios.delete(`/api/question/${this.data.slug}`)
+                        .then(res => this.$router.push('/forum'))
+                        .catch(error => console.log(error.response.data));
+                }
             }
         }
     }
