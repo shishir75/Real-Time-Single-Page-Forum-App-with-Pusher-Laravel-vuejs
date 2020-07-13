@@ -12,6 +12,14 @@
                 <v-btn color="teal">5 Replies</v-btn>
             </v-card-title>
             <v-card-text v-html="body"></v-card-text>
+            <v-card-actions>
+                <v-btn icon small>
+                    <v-icon color="orange">fas fa-edit</v-icon>
+                </v-btn>
+                <v-btn icon small>
+                    <v-icon color="red">fas fa-trash</v-icon>
+                </v-btn>
+            </v-card-actions>
         </v-container>
     </v-card>
 
@@ -21,6 +29,11 @@
     export default {
         name: "ShowQuestion",
         props: ['data'],
+        data() {
+            return {
+                own : User.own(this.data.user_id),
+            }
+        },
         computed: {
             body() {
                 return md.parse(this.data.body);

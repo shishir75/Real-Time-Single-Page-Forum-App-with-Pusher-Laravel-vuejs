@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuetify from "../plugins/vuetify";
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import User from './Helpers/User';
 window.User = User;
@@ -52,4 +53,7 @@ const app = new Vue({
     el: '#app',
     vuetify: Vuetify,
     router,
+    icons: {
+        iconfont: 'fa',
+    },
 });

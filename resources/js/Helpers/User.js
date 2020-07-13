@@ -48,6 +48,10 @@ class User {
         }
     }
 
+    own(user_id) {
+        return this.id() === user_id;
+    }
+
 }
 
 export default User = new User();
