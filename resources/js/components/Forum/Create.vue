@@ -1,5 +1,6 @@
 <template>
     <v-container>
+
         <v-form @submit.prevent="create">
             <v-text-field
                 v-model="form.title"
@@ -7,6 +8,7 @@
                 type="text"
                 required
             ></v-text-field>
+            <span class="red--text" v-if="errors.title">{{ errors.title[0]}}</span>
 
             <v-autocomplete
                 :items="categories.data"
@@ -16,8 +18,10 @@
                 label="Category"
                 v-model="form.category_id"
             ></v-autocomplete>
+            <span class="red--text" v-if="errors.category_id">{{ errors.category_id[0]}}</span>
 
             <vue-simplemde v-model="form.body"/>
+            <span class="red--text" v-if="errors.body">{{ errors.body[0]}}</span><br>
 
 
             <v-btn color="green" type="submit">Create</v-btn>
@@ -47,7 +51,7 @@
             create() {
                 axios.post('/api/question', this.form)
                     .then(res => console.log(res.data.data))
-                    .catch(error => this.errors = error.response.data.error);
+                    .catch(error => this.errors = error.response.data.errors);
             }
         }
     }
