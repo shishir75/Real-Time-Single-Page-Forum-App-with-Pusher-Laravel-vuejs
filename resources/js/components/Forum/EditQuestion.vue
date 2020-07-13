@@ -24,7 +24,7 @@
 
 
             <v-btn color="green" type="submit">Update</v-btn>
-            <v-btn  type="button">Cancel</v-btn>
+            <v-btn  type="button" @click="cancel">Cancel</v-btn>
         </v-form>
     </v-container>
 </template>
@@ -32,6 +32,7 @@
 <script>
     export default {
         name: "EditQuestion",
+        props: ['data'],
         data() {
             return {
                 form: {
@@ -44,12 +45,18 @@
             }
         },
         created() {
+            this.form = this.data;
             axios.get('/api/category')
                 .then(res => this.categories = res.data);
         },
         methods: {
+            cancel() {
+                EventBus.$emit('cancelEditing');
+            },
             update() {
-
+                axios.patch(`/api/question/${this.form.slug}`, this.form)
+                    .then(res => this.cancel())
+                    .catch(error => console.log(error.response.data));
             }
         }
     }

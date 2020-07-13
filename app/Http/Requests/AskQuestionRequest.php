@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AskQuestionRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class AskQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required | min:8 | unique:questions',
+            'title' => 'required|unique:questions,title,'. $this->question->id,
             'category_id' => 'required',
             'body' => 'required'
         ];

@@ -8,7 +8,8 @@ use Illuminate\Support\Str;
 
 class Question extends Model
 {
-    protected $guarded = [];
+    //protected $guarded = [];
+    protected $fillable = ['title', 'slug', 'body', 'user_id', 'category_id'];
 
     protected static function boot()
     {
