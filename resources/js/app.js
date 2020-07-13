@@ -19,7 +19,11 @@ window.EventBus = new Vue();
 import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
-Vue.component('vue-simplemde', VueSimplemde)
+Vue.component('vue-simplemde', VueSimplemde);
+
+// Markdown
+import md from 'marked';
+window.md = md;
 
 /**
  * The following block of code may be used to automatically register your
