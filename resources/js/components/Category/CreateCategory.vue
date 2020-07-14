@@ -16,7 +16,7 @@
                 </v-toolbar>
 
                 <v-list dense>
-                    <div v-for="category in categories" :key="category.id">
+                    <div v-for="(category, index) in categories" :key="category.id">
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title>{{ category.name }}</v-list-item-title>
@@ -24,7 +24,7 @@
                             <v-btn icon small @click="edit" class="mr-5">
                                 <v-icon color="orange">fas fa-edit</v-icon>
                             </v-btn>
-                            <v-btn icon small @click="destroy(category.slug)">
+                            <v-btn icon small @click="destroy(category.slug,index)">
                                 <v-icon color="red">fas fa-trash</v-icon>
                             </v-btn>
                         </v-list-item>
@@ -54,7 +54,6 @@
             create() {
                 axios.post('/api/category', this.form)
                     .then(res => {
-                        console.log(res.data);
                         this.categories.unshift(res.data);
                         this.form.name = null;
                     })
@@ -65,9 +64,7 @@
             },
             destroy(slug, index) {
                 axios.delete(`/api/category/${slug}`)
-                    .then(res => {
-                        this.categories.splice(index, 1)
-                    });
+                    .then(res => this.categories.splice(index, 1));
             }
         },
         created() {
