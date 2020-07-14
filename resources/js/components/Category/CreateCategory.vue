@@ -24,7 +24,7 @@
                             <v-btn icon small @click="edit" class="mr-5">
                                 <v-icon color="orange">fas fa-edit</v-icon>
                             </v-btn>
-                            <v-btn icon small @click="destroy">
+                            <v-btn icon small @click="destroy(category.slug)">
                                 <v-icon color="red">fas fa-trash</v-icon>
                             </v-btn>
                         </v-list-item>
@@ -53,14 +53,21 @@
         methods: {
             create() {
                 axios.post('/api/category', this.form)
-                    .then(res => console.log(res.data.data))
+                    .then(res => {
+                        console.log(res.data);
+                        this.categories.unshift(res.data);
+                        this.form.name = null;
+                    })
                     .catch(error => console.log(error.response.data));
             },
             edit() {
 
             },
-            destroy() {
-
+            destroy(slug, index) {
+                axios.delete(`/api/category/${slug}`)
+                    .then(res => {
+                        this.categories.splice(index, 1)
+                    });
             }
         },
         created() {
