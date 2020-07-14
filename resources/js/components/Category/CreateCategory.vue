@@ -66,6 +66,12 @@
                     .catch(error => console.log(error.response.data));
             },
 
+            edit(index) {
+                this.form.name = this.categories[index].name;
+                this.editSlug = this.categories[index].slug;
+                this.categories.splice(index, 1);
+            },
+
             update() {
                 axios.patch(`/api/category/${this.editSlug}`, this.form)
                     .then(res => {
@@ -74,17 +80,17 @@
                     })
                     .catch(error => console.log(error.response.data));
             },
-            edit(index) {
-                this.form.name = this.categories[index].name;
-                this.editSlug = this.categories[index].slug;
-                this.categories.splice(index, 1);
-            },
+
             destroy(slug, index) {
                 axios.delete(`/api/category/${slug}`)
                     .then(res => this.categories.splice(index, 1));
             }
         },
+
         created() {
+            if ( !User.admin() ) {
+                this.$router.push('/forum');
+            }
             axios.get('/api/category')
                 .then(res => this.categories = res.data.data)
                 .catch(error => console.log(error.response.data));
