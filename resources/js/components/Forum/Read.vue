@@ -2,12 +2,14 @@
     <div v-if="question">
         <edit-question v-if="editing" :data="question"></edit-question>
         <show-question v-else :data="question"></show-question>
+        <replies :replies="question.replies"></replies>
     </div>
 </template>
 
 <script>
     import ShowQuestion from "./ShowQuestion";
     import EditQuestion from "./EditQuestion";
+    import Replies from "../Reply/Replies";
     export default {
         name: "Read",
         data() {
@@ -17,7 +19,7 @@
             }
         },
         components: {
-            ShowQuestion, EditQuestion,
+            ShowQuestion, EditQuestion, Replies
         },
         created() {
             this.listen();
