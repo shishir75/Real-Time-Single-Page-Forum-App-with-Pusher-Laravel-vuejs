@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <form @submit.prevent="submit">
-            <vue-simplemde v-model="form.body" value="form.body"/>
+            <vue-simplemde v-model="form.body"/>
             <v-btn class="teal" type="submit" dark>Reply</v-btn>
         </form>
 
