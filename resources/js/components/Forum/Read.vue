@@ -2,7 +2,7 @@
     <div v-if="question">
         <edit-question v-if="editing" :data="question"></edit-question>
         <show-question v-else :data="question"></show-question>
-        <replies :replies="question.replies"></replies>
+        <replies :question="question"></replies>
         <new-reply :questionSlug="question.slug"></new-reply>
 
     </div>

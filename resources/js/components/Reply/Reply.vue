@@ -27,7 +27,7 @@
 <script>
     export default {
         name: "Reply",
-        props: ['data'],
+        props: ['data', 'index'],
         computed: {
             own() {
                 return User.own(this.data.user_id);
@@ -38,7 +38,7 @@
 
             },
             destroy() {
-
+                EventBus.$emit('deleteReply', this.index);
             }
         }
     }

@@ -58,6 +58,10 @@
             listen() {
                 EventBus.$on('newReply', () => {
                     this.reply_count++;
+                });
+
+                EventBus.$on('deleteReply', () => {
+                    this.reply_count--;
                 })
             }
         }
