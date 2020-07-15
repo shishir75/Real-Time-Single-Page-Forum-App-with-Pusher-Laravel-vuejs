@@ -34,6 +34,7 @@
         data() {
             return {
                 editing: false,
+                beforeEditReplyBody: '',
             }
         },
         components: {
@@ -50,13 +51,19 @@
         methods: {
             edit() {
                 this.editing = true;
+                this.beforeEditReplyBody = this.data.reply;
             },
             destroy() {
                 EventBus.$emit('deleteReply', this.index);
             },
             listen() {
-                EventBus.$on('cancelEditing', () => {
+                EventBus.$on('cancelEditing', (reply) => {
                     this.editing = false;
+                    if (reply !== this.data.reply) {
+                        this.data.reply = this.beforeEditReplyBody;
+                        this.beforeEditReplyBody = '';
+                    }
+
                 })
             }
         },
