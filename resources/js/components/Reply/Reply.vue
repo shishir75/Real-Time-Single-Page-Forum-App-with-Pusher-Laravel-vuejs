@@ -8,11 +8,13 @@
 
             <v-divider></v-divider>
 
-            <v-card-text v-html="data.reply"></v-card-text>
+            <edit-reply v-if="editing" :reply="data"></edit-reply>
+
+            <v-card-text v-else v-html="reply"></v-card-text>
 
             <v-divider></v-divider>
 
-            <v-card-actions class="ml-5" v-if="own">
+            <v-card-actions class="ml-5" v-if="own && !editing">
                 <v-btn icon small @click="edit">
                     <v-icon color="orange">fas fa-edit</v-icon>
                 </v-btn>
@@ -25,22 +27,43 @@
 </template>
 
 <script>
+    import EditReply from "./EditReply";
     export default {
         name: "Reply",
         props: ['data', 'index'],
+        data() {
+            return {
+                editing: false,
+            }
+        },
+        components: {
+            EditReply
+        },
         computed: {
             own() {
                 return User.own(this.data.user_id);
+            },
+            reply() {
+                return md.parse(this.data.reply);
             }
         },
         methods: {
             edit() {
-
+                this.editing = true;
             },
             destroy() {
                 EventBus.$emit('deleteReply', this.index);
+            },
+            listen() {
+                EventBus.$on('cancelEditing', () => {
+                    this.editing = false;
+                })
             }
-        }
+        },
+        created() {
+            this.listen();
+        },
+
     }
 </script>
 
