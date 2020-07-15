@@ -10,16 +10,17 @@
 <script>
     export default {
         name: "Like",
+        props: ['content'],
         data() {
             return {
-                liked: false,
-                count: 0
+                liked: this.content.user_liked,
+                count: this.content.like_count,
             }
         },
         methods: {
             likeIt() {
                 if(User.loggedIn()) {
-                    this.liked ? this.increment() : this.decrement();
+                    this.liked ? this.decrement() : this.increment();
                     this.liked =  !this.liked;
                 }
             },
