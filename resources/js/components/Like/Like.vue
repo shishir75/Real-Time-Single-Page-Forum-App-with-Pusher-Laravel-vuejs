@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-btn icon small @click="likeIt">
-            <v-icon :color="this.liked ? 'red' : ''">fas fa-heart</v-icon>
+            <v-icon :color="color">fas fa-heart</v-icon>
             <span class="ml-2">{{ count }}</span>
         </v-btn>
     </div>
@@ -17,6 +17,11 @@
                 count: this.content.like_count,
             }
         },
+        computed: {
+            color() {
+                return this.liked ? 'red' : 'red lighten-4';
+            }
+        },
         methods: {
             likeIt() {
                 if(User.loggedIn()) {
@@ -25,10 +30,12 @@
                 }
             },
             increment() {
-                this.count++;
+                axios.post(`/api/like/${this.content.id}`)
+                    .then(res => this.count++);
             },
             decrement() {
-                this.count--;
+                axios.delete(`/api/like/${this.content.id}`)
+                    .then(res => this.count--);
             }
         }
 
