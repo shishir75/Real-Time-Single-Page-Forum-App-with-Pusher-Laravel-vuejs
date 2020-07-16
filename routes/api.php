@@ -27,6 +27,9 @@ Route::apiResources([
 Route::post('like/{reply}', 'LikeController@likeIt');
 Route::delete('like/{reply}', 'LikeController@unLikeIt');
 
+// Notifications Route
+Route::get('notifications', 'NewReplyNotificationController@index');
+
 
 // JWT Routes
 Route::group([

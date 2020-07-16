@@ -57,7 +57,7 @@ class QuestionController extends Controller
      * @param  \App\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(AskQuestionRequest $request, Question $question)
+    public function update(Request $request, Question $question)
     {
         $question->update($request->all());
         return \response('Updated', Response::HTTP_ACCEPTED);

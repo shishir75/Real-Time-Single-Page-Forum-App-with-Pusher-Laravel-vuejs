@@ -25,7 +25,7 @@ class AskQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:questions,title,'. $this->question->id,
+            'title' => 'required|unique:questions',
             'category_id' => 'required',
             'body' => 'required'
         ];

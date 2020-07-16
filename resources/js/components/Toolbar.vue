@@ -2,9 +2,11 @@
     <v-card color="grey lighten-4" flat tile>
         <v-toolbar dense>
 
-            <v-toolbar-title>Title</v-toolbar-title>
+            <v-toolbar-title>Single Page Real Time Forum</v-toolbar-title>
 
             <v-spacer></v-spacer>
+
+            <app-notification></app-notification>
 
             <div class="hidden-sm-and-down">
                 <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
@@ -17,8 +19,10 @@
 </template>
 
 <script>
+    import AppNotification from "./AppNotification";
     export default {
         name: "Toolbar",
+        components: { AppNotification, },
         data() {
             return {
                 items: [

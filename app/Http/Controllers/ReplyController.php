@@ -35,7 +35,7 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
         $reply = $question->replies()->create($request->all());
-        
+
         $user = $question->user;
         $user->notify(new NewReplyNotification($reply));
 
