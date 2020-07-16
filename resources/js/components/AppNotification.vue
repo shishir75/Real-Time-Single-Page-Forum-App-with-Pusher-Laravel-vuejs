@@ -9,13 +9,15 @@
             </template>
             <v-list>
                 <v-list-item v-for="item in unread" :key="item.id">
-                        <v-list-item-title>{{ item.data.question }}</v-list-item-title>
+                    <v-list-item-title>
+                        {{ item.data.replyBy }} replied on {{ item.data.question }}
+                    </v-list-item-title>
                 </v-list-item>
 
                 <v-divider></v-divider>
 
                 <v-list-item v-for="item in read" :key="item.id">
-                    <v-list-item-title>{{ item.data.question }}</v-list-item-title>
+                    <v-list-item-title class="grey--text">{{ item.data.replyBy }} replied on {{ item.data.question }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
