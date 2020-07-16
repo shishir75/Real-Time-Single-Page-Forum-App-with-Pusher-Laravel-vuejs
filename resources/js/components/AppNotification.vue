@@ -4,7 +4,7 @@
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon small class="mr-6" v-bind="attrs" v-on="on" dark>
                     <v-icon color="red">fas fa-bell</v-icon>
-                    <v-badge color="green" :content="count"></v-badge>
+                    <v-badge color="green" :content="unreadCount"></v-badge>
                 </v-btn>
             </template>
             <v-list>
@@ -30,12 +30,6 @@
                 read: {},
                 unread: {},
                 unreadCount: 0,
-                count_sample: 5,
-            }
-        },
-        computed: {
-            count() {
-                return this.count_sample;
             }
         },
         created() {
@@ -49,7 +43,7 @@
                     .then(res => {
                         this.read = res.data.read;
                         this.unread = res.data.unread;
-                        this.unreadCount = res.data.unreadCount;
+                        this.unreadCount = res.data.unread.length;
                     });
             }
         }
