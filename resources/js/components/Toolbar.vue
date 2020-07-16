@@ -6,7 +6,7 @@
 
             <v-spacer></v-spacer>
 
-            <app-notification></app-notification>
+            <app-notification v-if="logged"></app-notification>
 
             <div class="hidden-sm-and-down">
                 <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
@@ -25,6 +25,7 @@
         components: { AppNotification, },
         data() {
             return {
+                logged: User.loggedIn(),
                 items: [
                     { title: 'Forun', to: '/forum', show: true},
                     { title: 'Ask A Question', to: '/ask', show: User.loggedIn()},

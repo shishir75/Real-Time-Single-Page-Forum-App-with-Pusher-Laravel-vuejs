@@ -28,7 +28,8 @@ Route::post('like/{reply}', 'LikeController@likeIt');
 Route::delete('like/{reply}', 'LikeController@unLikeIt');
 
 // Notifications Route
-Route::get('notifications', 'NewReplyNotificationController@index');
+Route::post('notifications', 'NewReplyNotificationController@index');
+Route::post('markAsRead', 'NewReplyNotificationController@markAsRead');
 
 
 // JWT Routes
