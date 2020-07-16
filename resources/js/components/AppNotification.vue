@@ -3,14 +3,17 @@
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon small class="mr-6" v-bind="attrs" v-on="on" dark>
-                    <v-icon color="red">fas fa-bell</v-icon> 5
+                    <v-icon color="red">fas fa-bell</v-icon>
+                    <v-badge color="green" :content="count"></v-badge>
                 </v-btn>
             </template>
             <v-list>
                 <v-list-item v-for="item in unread" :key="item.id">
                         <v-list-item-title>{{ item.data.question }}</v-list-item-title>
                 </v-list-item>
+
                 <v-divider></v-divider>
+
                 <v-list-item v-for="item in read" :key="item.id">
                     <v-list-item-title>{{ item.data.question }}</v-list-item-title>
                 </v-list-item>
@@ -27,6 +30,12 @@
                 read: {},
                 unread: {},
                 unreadCount: 0,
+                count_sample: 5,
+            }
+        },
+        computed: {
+            count() {
+                return this.count_sample;
             }
         },
         created() {
