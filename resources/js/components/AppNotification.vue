@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div class="text-center" v-if="logged">
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn icon small class="mr-6" v-bind="attrs" v-on="on" dark>
@@ -32,11 +32,13 @@
                 read: {},
                 unread: {},
                 unreadCount: 0,
+                logged: false,
             }
         },
         created() {
             if(User.loggedIn()) {
                 this.getNotifications();
+                this.logged = true;
             }
         },
         methods: {
