@@ -26,6 +26,11 @@ Vue.component('vue-simplemde', VueSimplemde);
 import md from 'marked';
 window.md = md;
 
+// Exception
+import Exception from "./Helpers/Exception";
+window.Exception = Exception;
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

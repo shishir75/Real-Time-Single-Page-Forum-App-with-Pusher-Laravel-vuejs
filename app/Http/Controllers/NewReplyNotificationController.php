@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class NewReplyNotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jwt');
+    }
+
     public function index()
     {
         return [
