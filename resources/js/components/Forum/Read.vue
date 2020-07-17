@@ -134,6 +134,16 @@
                 EventBus.$on('deleteReply', () => {
                     this.increment_reply--;
                 })
+
+                Echo.private('App.User.' + User.id())
+                    .notification((notification) => {
+                        this.increment_reply++;
+                    });
+
+                Echo.channel('DeleteReplyChannel')
+                    .listen('DeleteReplyEvent', (e) => {
+                        this.increment_reply--;
+                    })
             },
 
             destroy() {
