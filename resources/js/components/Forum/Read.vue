@@ -60,7 +60,12 @@
 
         <div v-if="!editing">
             <replies :question="question"></replies>
-            <new-reply :questionSlug="question.slug"></new-reply>
+            <new-reply v-if="loggedIn" :questionSlug="question.slug"></new-reply>
+            <div v-else class="mt-5">
+                <router-link to="/login">
+                    Login to Reply
+                </router-link>
+            </div>
         </div>
 
 
@@ -103,6 +108,10 @@
         },
 
         computed: {
+            loggedIn() {
+                return User.loggedIn();
+            },
+
             body() {
                 return md.parse(this.question.body);
             },
