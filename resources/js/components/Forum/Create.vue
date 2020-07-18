@@ -24,7 +24,7 @@
             <span class="red--text" v-if="errors.body">{{ errors.body[0]}}</span><br>
 
 
-            <v-btn color="green" type="submit">Create</v-btn>
+            <v-btn color="green" type="submit" :disabled="disabled">Create</v-btn>
         </v-form>
     </v-container>
 </template>
@@ -41,6 +41,11 @@
                 },
                 categories: {},
                 errors: {}
+            }
+        },
+        computed: {
+            disabled() {
+                return !(this.form.title && this.form.body && this.form.category_id)
             }
         },
         created() {

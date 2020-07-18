@@ -7,9 +7,10 @@
                 type="text"
                 required
             ></v-text-field>
+            <span class="red--text" v-if="errors.name">{{ errors.name[0]}}</span><br>
 
-            <v-btn type="submit" color="green" v-if="editSlug">Update</v-btn>
-            <v-btn type="submit" color="teal" v-else>Create</v-btn>
+            <v-btn type="submit" :disabled="disabled" color="green" v-if="editSlug">Update</v-btn>
+            <v-btn type="submit" :disabled="disabled" color="teal" v-else>Create</v-btn>
 
             <v-card class="mt-3">
                 <v-toolbar color="indigo" dark>
@@ -31,8 +32,6 @@
                         </v-list-item>
                         <v-divider></v-divider>
                     </div>
-
-
                 </v-list>
             </v-card>
 
@@ -50,6 +49,12 @@
                 },
                 categories: {},
                 editSlug: null,
+                errors: {}
+            }
+        },
+        computed: {
+            disabled() {
+                return !(this.form.name);
             }
         },
         methods: {
@@ -63,7 +68,7 @@
                         this.categories.unshift(res.data);
                         this.form.name = null;
                     })
-                    .catch(error => console.log(error.response.data));
+                    .catch(error => this.errors = error.response.data.errors);
             },
 
             edit(index) {
