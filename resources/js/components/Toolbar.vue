@@ -1,8 +1,12 @@
 <template>
     <v-card color="grey lighten-4" flat tile>
-        <v-toolbar dense>
+        <v-toolbar color="indigo" dark>
 
-            <v-toolbar-title>Single Page Real Time Forum</v-toolbar-title>
+            <v-toolbar-title>
+                <router-link to="/" class="white--text">
+                    Single Page Real Time Forum
+                </router-link>
+            </v-toolbar-title>
 
             <v-spacer></v-spacer>
 
@@ -22,6 +26,7 @@
     import AppNotification from "./AppNotification";
     export default {
         name: "Toolbar",
+
         components: { AppNotification, },
         data() {
             return {
